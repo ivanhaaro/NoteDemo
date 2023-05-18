@@ -13,12 +13,12 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/note")
+@RequestMapping("/notes")
 @RequiredArgsConstructor
 public class NoteResource {
     private final NoteService noteService;
 
-    @GetMapping("/list")
+    @GetMapping()
     public ResponseEntity<Response> getNotes() {
         return ResponseEntity.ok(
                 Response.builder().
@@ -31,7 +31,7 @@ public class NoteResource {
         );
     }
 
-    @PostMapping("/save")
+    @PostMapping()
     public ResponseEntity<Response> saveNote(@RequestBody @Valid Note note) {
         return ResponseEntity.ok(
                 Response.builder().
@@ -44,7 +44,7 @@ public class NoteResource {
         );
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<Response> getNote(@PathVariable("id") int id) {
         return ResponseEntity.ok(
                 Response.builder().
@@ -57,7 +57,7 @@ public class NoteResource {
         );
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<Response> DeleteNote(@PathVariable("id") int id) {
         return ResponseEntity.ok(
                 Response.builder().
